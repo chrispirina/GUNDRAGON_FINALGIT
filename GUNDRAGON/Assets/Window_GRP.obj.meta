@@ -14,6 +14,10 @@ ModelImporter:
     400006: Window_GRP_WindowFrame3
     400008: WindowFrame1_Window_GRP
     2100000: lambert9SG
+    2100002: Window_GRP_WindowFrameMat
+    2100004: Window_GRP_WindowFrame2Mat
+    2100006: Window_GRP_WindowFrame3Mat
+    2100008: WindowFrame1_Window_GRPMat
     2300000: Window_GRP_WindowFrame
     2300002: Window_GRP_WindowFrame2
     2300004: Window_GRP_WindowFrame3
@@ -60,6 +64,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -84,6 +89,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
