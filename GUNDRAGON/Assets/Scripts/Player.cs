@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     public static float publicPlayerHealth;
     public static float maxPlayerHealth = 200.0f;
 
+    public bool gotSpear = false;
+
     Transform gunPos;
     Transform meleePos;
     Vector3 fwdGun;

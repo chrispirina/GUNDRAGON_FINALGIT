@@ -38,14 +38,14 @@ public class CameraThrdPerson : MonoBehaviour
 
         if (Input.GetMouseButtonDown(2))
         {
-            if (amLocked == true)
+            if (amLocked == false)
             {
                 targetEnemy = targetObjects[0];
-                amLocked = false;
-            }
-            else if (amLocked == false)
-            {
                 amLocked = true;
+            }
+            else if (amLocked == true)
+            {
+                amLocked = false;
             }
         }
 
