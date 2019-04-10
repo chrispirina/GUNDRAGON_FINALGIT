@@ -1,343 +1,152 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 public class Player : MonoBehaviour
-{                                                                                           // Line 260 for Damage over time addition.
-    public enum ElementType
+{
+    public ElementType currentElement = ElementType.NONE;
+    public GameObject[] gunTypes = { };
+
+    public float Health
     {
-        NONE,
-        FIRE,
-    }
-
-    public ElementType elementType = ElementType.NONE;
-
-    bool didElementSwap = false;
-
-    public ParticleSystem GunChange;
-    public ParticleSystem fireShot;
-    public ParticleSystem noneShot;
-
-    GameObject fireGun;
-    GameObject noneGun;
-
-    public static bool noneEquipped = true;
-    public static bool airEquipped = false;
-    public static bool earthEquipped = false;
-    public static bool fireEquipped = false;
-    public static bool waterEquipped = false;
-
-    float shootGun = 0;
-    float gunOut = 0;
-    public float fireRate = 0.2f;
-    public float gunDamage = 5.0f;
-    bool firstShot = false;
-
-    public float hitMelee = 0;
-    public float meleeRate = 0.2f;
-    public float meleeDamage = 10.0f;
-    public static bool didSmack = false;
-
-    public static bool playerIsDead = false;
-    public static bool endReached = false;
-
-
-    public static bool didPause = false;
-
-    public bool playerWasHit = false;
-    public float visHealth;
-    public static float health;
-    public static float publicPlayerHealth;
-    public static float maxPlayerHealth = 200.0f;
-
-    Transform gunPos;
-    Transform meleePos;
-    Vector3 fwdGun;
-    Animator playerAnimator;
-
-
-    void Awake()
-    {
-
-        fireGun = GameObject.FindGameObjectWithTag("FireGun");
-        noneGun = GameObject.FindGameObjectWithTag("NoneGun");
-        meleePos = GameObject.FindGameObjectWithTag("MeleeHitbox").transform;
-        gunPos = GameObject.FindGameObjectWithTag("GunEmitter").transform;
-        playerAnimator = GetComponent<Animator>();
-        health = maxPlayerHealth;
-        publicPlayerHealth = maxPlayerHealth;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        visHealth = health;
-
-        if (playerIsDead == true)
-        {
-            playerAnimator.SetTrigger("Died");
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
-        if (playerIsDead == false)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.didStart == true)
-            {
-                if (didPause == false)
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    didPause = true;
-                }
-
-                else if (didPause == true)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                    didPause = false;
-                }
-            }
-
-            if (didPause == false)
-            {
-                if (endReached == true)
-                {
-                    playerAnimator.SetTrigger("Victory");
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                }
-
-                if (health <= 0)
-                {
-                    playerIsDead = true;
-                }
-
-                if (didElementSwap == true)
-                {
-                    whatsEquipped();
-                    didElementSwap = false;
-                }
-
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    if (elementType == ElementType.NONE)
-                    {
-                        elementType = ElementType.FIRE;
-                        didElementSwap = true;
-                    }
-                    else if (elementType == ElementType.FIRE)
-                    {
-                        elementType = ElementType.NONE;
-                        didElementSwap = true;
-                    }
-                }
-
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    if (elementType == ElementType.NONE)
-                    {
-                        elementType = ElementType.FIRE;
-                        didElementSwap = true;
-                    }
-                    else if (elementType == ElementType.FIRE)
-                    {
-                        elementType = ElementType.NONE;
-                        didElementSwap = true;
-                    }
-                }
-
-                if (didPause == false)
-                {
-                    if (health != publicPlayerHealth)
-                    {
-                        health = publicPlayerHealth;
-                    }
-                    fwdGun = gunPos.TransformDirection(Vector3.forward);
-
-                    if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("GunAim") == true && gunOut > 0)
-                    {
-                        gunOut -= Time.deltaTime;
-                    }
-
-                    if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("GunAim") == true && gunOut <= 0)
-                    {
-                        playerAnimator.SetTrigger("Holster");
-                        playerAnimator.ResetTrigger("Draw");
-                    }
-
-                    if (shootGun <= 0)
-                    {
-                        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("GunAim") == true && firstShot == true)
-                        {
-                            gunOut = 1.0f;
-                            Shoot();
-                            shootGun = fireRate;
-                            firstShot = false;
-                        }
-
-                        if (Input.GetMouseButtonDown(1))
-                        {
-                            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("GunAim") != true)
-                            {
-                                playerAnimator.ResetTrigger("Holster");
-                                playerAnimator.SetTrigger("Draw");
-                                gunOut = 2.0f;
-                                if (firstShot == false)
-                                {
-                                    firstShot = true;
-                                }
-                            }
-
-                            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("GunAim") == true)
-                            {
-                                gunOut = 1.0f;
-                                Shoot();
-                                shootGun = fireRate;
-                            }
-
-                        }
-                    }
-                    if (shootGun > 0)
-                    {
-                        shootGun -= Time.deltaTime;
-                    }
-                    if (hitMelee <= 0)
-                    {
-                        playerAnimator.ResetTrigger("Attack");
-                        didSmack = false;
-                        PlayerMeleeDetection.canSmack = true;
-                        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Hit1toHit2") == true)
-                        {
-                            playerAnimator.SetTrigger("HitToIdle");
-                        }
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            MeleeAttack();
-                            playerAnimator.ResetTrigger("HitToIdle");
-                            hitMelee = meleeRate;
-                        }
-                    }
-                    if (hitMelee > 0)
-                    {
-                        didSmack = true;
-                        Debug.Log("Can't hit yet");
-                        hitMelee -= Time.deltaTime;
-
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Hit1toHit2") == true || playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") == true)
-                            {
-                                MeleeAttack();
-                                playerAnimator.ResetTrigger("HitToIdle");
-                                hitMelee = meleeRate;
-                            }
-
-                        }
-                    }
-                }
-            }
+        get => health;
+        set {
+            health = Mathf.Clamp(value, 0F, maxHealth);
+            UpdateHealth();
         }
     }
+    [SerializeField]
+    [Readonly]
+    private float health;
+    public float maxHealth = 200F;
 
-    void MeleeAttack()
+    [Header("State")]
+    public bool gotSpear;
+    [Readonly]
+    public bool isDead;
+
+    [Header("Anchors")]
+    public Transform gunAnchor;
+    public Transform meleeAnchor;
+
+    [Header("Properties")]
+    public float gunDamage = 5F;
+
+    [Header("Particles")]
+    public ParticleSystem[] elementalParticles = { };
+    public ParticleSystem gunChangeParticles;
+
+    private float gunOut;
+
+    private Animator animator;
+
+    private void Awake()
     {
-        if (PlayerMovement.didJump == true)
+        animator = GetComponent<Animator>();
+        Health = maxHealth;
+    }
+
+    private void Update()
+    {
+        if (isDead)
         {
-            playerAnimator.SetTrigger("JumpAttack");
-        }
-        else if (PlayerMovement.didJump != true)
-        {
-            playerAnimator.SetTrigger("Attack");
+            GameManager.Instance.requireCursor = true;
+            return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager gm = GameManager.Instance;
+
+            if (gm)
+                gm.IsPaused = !gm.IsPaused;
+        }
+
+        if (GameManager.Instance.IsPaused)
+            return;
+
+        if(Input.GetKeyDown(KeyCode.E))
+            CycleElement(1);
+        if(Input.GetKeyDown(KeyCode.Q))
+            CycleElement(-1);
+
+        if (gunOut > .0F)
+            gunOut -= Time.deltaTime;
+
+        if (Input.GetMouseButtonDown(1)) {
+            animator.SetTrigger(Anim.SHOOT);
+            gunOut = 2F;
+        }
+
+        animator.SetBool(Anim.GUN, gunOut > .0F);
+    }
+
+    private void OnValidate()
+    {
+        int elementCount = System.Enum.GetValues(typeof(ElementType)).Length;
+
+        if (gunTypes.Length != elementCount)
+            System.Array.Resize(ref gunTypes, elementCount);
+        if (elementalParticles.Length != elementCount)
+            System.Array.Resize(ref elementalParticles, elementCount);
+    }
+
+    private void UpdateHealth()
+    {
+        if (Health <= .0F)
+            isDead = true;
+    }
+
+    private void CycleElement(int direction)
+    {
+        int element = (int)currentElement + direction;
+        int elementCount = System.Enum.GetValues(typeof(ElementType)).Length;
+        if (element >= elementCount)
+            element = 0;
+        else if (element < 0)
+            element = elementCount - 1;
+        currentElement = (ElementType)element;
     }
 
     public void Shoot()
     {
-        playerAnimator.SetTrigger("Shoot");
-        RaycastHit hit;
-        if (Physics.Raycast(gunPos.position, fwdGun, out hit, Mathf.Infinity))
+        gunOut = 1F;
+
+        if(Physics.Raycast(gunAnchor.position, gunAnchor.forward, out RaycastHit hit))
         {
-            if (elementType == ElementType.FIRE)
+            if (elementalParticles[(int)currentElement])
+                elementalParticles[(int)currentElement].Play();
+
+            Debug.DrawRay(gunAnchor.position, gunAnchor.forward * hit.distance, Color.green);
+            if (!hit.collider.CompareTag("Enemy"))
+                return;
+
+            Enemy enemy = hit.collider.attachedRigidbody.GetComponent<Enemy>();
+
+            if (!enemy)
+                return;
+
+            switch(currentElement)
             {
-                fireShot.Play(true);
-            }
-            else if (elementType == ElementType.NONE)
-            {
-                noneShot.Play(true);
+                case ElementType.NONE:
+                    enemy.enemyHealth -= gunDamage;
+                    break;
+                case ElementType.FIRE:
+                    enemy.startBurn = true;
+                    break;
             }
 
-            Debug.Log("Did Shoot");
-            Debug.DrawRay(gunPos.position, fwdGun * hit.distance, Color.green);
-            if (hit.collider.CompareTag("Enemy"))
-            {
-                if (hit.transform.gameObject.GetComponent<Enemy>())
-                {
-                    hit.transform.gameObject.GetComponent<Enemy>().enemyAnim.SetTrigger("Enemy_Hit");                    
-                    if (elementType == ElementType.FIRE)
-                    {
-                        hit.transform.gameObject.GetComponent<Enemy>().startBurn = true;
-                    }
-                    else if (elementType == ElementType.NONE)
-                    {
-                        hit.transform.gameObject.GetComponent<Enemy>().enemyHealth -= gunDamage;
-                    }
-                    hit.transform.gameObject.GetComponent<Enemy>().wasHit = true;
-                }
-                else if (hit.transform.gameObject.GetComponentInParent<Enemy>())
-                {
-                    hit.transform.gameObject.GetComponentInParent<Enemy>().enemyAnim.SetTrigger("Enemy_Hit");
-                    if (elementType == ElementType.FIRE)
-                    {
-                        hit.transform.gameObject.GetComponentInParent<Enemy>().startBurn = true;
-                    }
-                    else if (elementType == ElementType.NONE)
-                    {
-                        hit.transform.gameObject.GetComponentInParent<Enemy>().enemyHealth -= gunDamage;
-                    }
-                    hit.transform.gameObject.GetComponentInParent<Enemy>().wasHit = true;
-                    
-                }
-                ScoreManager.Instance.CombatScore += ScoreManager.Instance.gunAttackScore * ScoreManager.Instance.comboModifier;
-                ScoreManager.Instance.hitCount += 1;
-                Debug.Log("Hit an Enemy");
+            enemy.wasHit = true;
 
-            }
+            ScoreManager.Instance.combatScore += ScoreManager.Instance.gunAttackScore * ScoreManager.Instance.comboModifier;
+            ScoreManager.Instance.hitCount++;
         }
     }
 
-    void whatsEquipped()
+    public enum ElementType : int
     {
-        if (elementType == ElementType.FIRE)
-        {
-            fireEquipped = true;
-            noneEquipped = false;
-            waterEquipped = false;
-            airEquipped = false;
-            earthEquipped = false;
-            GunChange.Play(true);
-            noneGun.gameObject.SetActive(false);
-            fireGun.gameObject.SetActive(true);
-        }
-        if (elementType == ElementType.NONE)
-        {
-            noneEquipped = true;
-            fireEquipped = false;
-            waterEquipped = false;
-            airEquipped = false;
-            earthEquipped = false;
-            GunChange.Play(true);
-            fireGun.gameObject.SetActive(false);
-            noneGun.gameObject.SetActive(true);
-        }
+        NONE = 0,
+        FIRE = 1
+        //WATER = 2,
+        //AIR = 3,
+        //EARTH = 4
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-
-    }
-
 }

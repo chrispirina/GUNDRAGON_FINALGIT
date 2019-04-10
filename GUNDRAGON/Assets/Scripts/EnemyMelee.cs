@@ -12,14 +12,14 @@ public class EnemyMelee : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Debug.Log("hit player");
-            if (thisEnemy.amAttacking == true)
+            if (thisEnemy.amAttacking)
             {
-                Player.publicPlayerHealth -= GetComponentInParent<Enemy>().Damage;                
-                other.gameObject.GetComponent<Player>().playerWasHit = true;
-                other.gameObject.GetComponent<Animator>().SetTrigger("WasHit");
+                Player player = other.GetComponent<Player>();
+
+                player.Health -= thisEnemy.Damage;                
                 Debug.Log("Smacked player");
                 thisEnemy.amAttacking = false;
             }

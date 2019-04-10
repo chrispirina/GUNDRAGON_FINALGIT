@@ -17,14 +17,15 @@ public class BulletDamage : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Player.publicPlayerHealth -= 5;
-            other.gameObject.GetComponent<Player>().playerWasHit = true;
-            other.gameObject.GetComponent<Animator>().SetTrigger("WasHit");
+            Player player = other.GetComponent<Player>();
+            if (!player)
+                return;
+
+            player.Health -= 5F;
             Debug.Log("Smacked player");
-            Destroy(gameObject);
         }
-        else
-            Destroy(gameObject);
+
+        Destroy(gameObject);
     }
 }
 

@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     private ScoreManager scoreManager;
 
     public float LevelScore;
-    public float CombatScore;
+    public float combatScore;
     public float FinalScore;
     public float comboModifier = 1.0f;
     public int meleeAttackScore = 20;
@@ -45,7 +45,7 @@ public class ScoreManager : MonoBehaviour
        
         highestComboMod = 1.0f;
         LevelScore = 0.0f;
-        CombatScore = 0.0f;
+        combatScore = 0.0f;
         FinalScore = 0.0f;
     }
 	
@@ -61,21 +61,12 @@ public class ScoreManager : MonoBehaviour
             highestComboMod = comboModifier;
         }
 
-        if (Player.playerIsDead == true)
+        if (GameManager.Instance.player.isDead /*|| Player.endReached*/)
         {
-            LevelScore += CombatScore;
+            LevelScore += combatScore;
             hitCount = 0;
             currentHitCount = 0;
-            CombatScore = 0;
-            comboModifier = 1.0f;
-        }
-
-        if (Player.endReached == true)
-        {
-            LevelScore += CombatScore;
-            hitCount = 0;
-            currentHitCount = 0;
-            CombatScore = 0;
+            combatScore = 0;
             comboModifier = 1.0f;
         }
 
@@ -95,10 +86,10 @@ public class ScoreManager : MonoBehaviour
         }
         if (comboTimer <= 0)
         {
-            LevelScore += CombatScore;
+            LevelScore += combatScore;
             hitCount = 0;
             currentHitCount = 0;
-            CombatScore = 0;
+            combatScore = 0;
             comboModifier = 1.0f;
 
         }

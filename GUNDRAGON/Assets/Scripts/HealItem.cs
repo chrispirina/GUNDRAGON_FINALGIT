@@ -15,16 +15,13 @@ public class HealItem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Collider>().CompareTag("Player") == true)
+        if (other.CompareTag("Player"))
         {
-            if (Player.publicPlayerHealth < (Player.maxPlayerHealth - healAmount))
+            Player player = other.GetComponent<Player>();
+
+            if (player.Health < player.maxHealth)
             {
-                Player.publicPlayerHealth += healAmount;
-                Destroy(this.gameObject);
-            }
-            else if (Player.publicPlayerHealth < Player.maxPlayerHealth && Player.publicPlayerHealth > (Player.maxPlayerHealth - healAmount))
-            {
-                Player.publicPlayerHealth = Player.maxPlayerHealth;
+                player.Health += healAmount;
                 Destroy(this.gameObject);
             }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpearPickup : MonoBehaviour
 {
+    public bool spearGathered = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,23 @@ public class SpearPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (spearGathered == true)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") == true)
+        {
+            if (spearGathered == false)
+            {
+                other.GetComponent<Player>().gotSpear = true;
+                spearGathered = true;
+            }
+
+
+        }
     }
 }
