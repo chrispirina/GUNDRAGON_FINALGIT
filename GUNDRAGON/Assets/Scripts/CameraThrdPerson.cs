@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CameraThrdPerson : MonoBehaviour
 {
     public float rotateSensitivity;
     public Transform target;
     private Transform targetPlayer;
-    private Transform targetEnemy;
-    public List<Transform> targetObjects;
+    //public List<Transform> targetObjects;
+    public Queue<Transform> targets = new Queue<Transform>();
 
     public static bool amLocked = false;
 
@@ -26,82 +27,61 @@ public class CameraThrdPerson : MonoBehaviour
     {
         SetInitialPrefs();
     }
-	
+
     void Update()
     {
-     
-        if (targetObjects[0] == null)
-        {
+
+        if (targets.Count == 0)
             amLocked = false;
-            targetObjects.Remove(targetObjects[0]);            
-        }  
 
         if (Input.GetMouseButtonDown(2))
         {
-            if (amLocked == false)
-            {
-                targetEnemy = targetObjects[0];
-                amLocked = true;
-            }
-            else if (amLocked == true)
-            {
+            if (!amLocked)
+                CycleTarget();
+            else
                 amLocked = false;
-            }
         }
 
+        if (!amLocked)
+            target = targetPlayer;
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+                CycleTarget();
+        }
+    }
+
+    void LateUpdate()
+    {
         if (amLocked == false)
         {
-            target = targetPlayer;
+            transform.LookAt(target);
+
+            verticalRotate -= Input.GetAxis("Mouse Y") * rotateSensitivity;
+            verticalRotate = Mathf.Clamp(verticalRotate, verticalMinMax.x, verticalMinMax.y);
+            horizontalRotate += Input.GetAxis("Mouse X") * rotateSensitivity;
+
+            currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(verticalRotate, horizontalRotate), ref rotationSmoothVelocity, rotationSmoothTime);
+            transform.eulerAngles = currentRotation;
+
+            transform.position = targetPlayer.position - transform.forward * dstFromTarget;
         }
 
         else if (amLocked == true)
         {
-            target = targetEnemy;
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
+            /*
+            verticalRotate -= Input.GetAxis("Mouse Y") * rotateSensitivity;
+            verticalRotate = Mathf.Clamp(verticalRotate, verticalMinMax.x, verticalMinMax.y);
+            horizontalRotate += Input.GetAxis("Mouse X") * rotateSensitivity;
+            */
+            currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(verticalRotate, horizontalRotate), ref rotationSmoothVelocity, rotationSmoothTime);
+            transform.eulerAngles = currentRotation;
 
-            }
+
+            transform.LookAt(target);
+            transform.position = targetPlayer.position - transform.forward * dstFromTarget;
         }
     }
-
-	void LateUpdate ()
-    {
-        if (Player.didPause == false)
-        {
-            if (amLocked == false)
-            {
-                transform.LookAt(target);
-
-                verticalRotate -= Input.GetAxis("Mouse Y") * rotateSensitivity;
-                verticalRotate = Mathf.Clamp(verticalRotate, verticalMinMax.x, verticalMinMax.y);
-                horizontalRotate += Input.GetAxis("Mouse X") * rotateSensitivity;
-
-                currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(verticalRotate, horizontalRotate), ref rotationSmoothVelocity, rotationSmoothTime);
-                transform.eulerAngles = currentRotation;
-
-                transform.position = targetPlayer.position - transform.forward * dstFromTarget;
-            }
-
-            else if (amLocked == true)
-            {                
-                /*
-                verticalRotate -= Input.GetAxis("Mouse Y") * rotateSensitivity;
-                verticalRotate = Mathf.Clamp(verticalRotate, verticalMinMax.x, verticalMinMax.y);
-                horizontalRotate += Input.GetAxis("Mouse X") * rotateSensitivity;
-                */
-                currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(verticalRotate, horizontalRotate), ref rotationSmoothVelocity, rotationSmoothTime);
-                transform.eulerAngles = currentRotation;
-
-                
-                transform.LookAt(target);
-                transform.position = targetPlayer.position - transform.forward * dstFromTarget;
-            }
-            
-        }
-
-        
-        
-	}
 
     void SetInitialPrefs()
     {
@@ -112,17 +92,27 @@ public class CameraThrdPerson : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Collider>().CompareTag("Enemy") == true)
-        {
-            targetObjects.Add(other.attachedRigidbody.gameObject.GetComponent<Transform>());
-        }
+        if (other.CompareTag("Enemy"))
+            targets.Enqueue(other.attachedRigidbody.transform);
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Collider>().CompareTag("Enemy") == true)
+        if (other.CompareTag("Enemy"))
+            targets = new Queue<Transform>(targets.Where(x => x != other.attachedRigidbody.transform));
+    }
+
+    private void CycleTarget()
+    {
+        if(targets.Count <= 0)
         {
-            targetObjects.Remove(other.attachedRigidbody.gameObject.GetComponent<Transform>());
+            amLocked = false;
+            return;
         }
+
+        amLocked = true;
+        if (target)
+            targets.Enqueue(target);
+        target = targets.Dequeue();
     }
 }

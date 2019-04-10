@@ -23,7 +23,7 @@ public class SpearPickup : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Collider>().CompareTag("Player") == true)
+        if (other.CompareTag("Player") == true)
         {
             if (spearGathered == false)
             {

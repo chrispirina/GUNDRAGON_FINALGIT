@@ -11,8 +11,8 @@ public class PlayerMeleeDetection : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("hit enemy");
-            if (Player.didSmack == true)
-            {
+            //if (Player.didSmack == true)
+            //{
                 if(other.gameObject.GetComponent<Enemy>())
                 {
                     if (canSmack == true)
@@ -35,11 +35,11 @@ public class PlayerMeleeDetection : MonoBehaviour
                 }
                 
                 ScoreManager.Instance.hitCount += 1;
-                ScoreManager.Instance.CombatScore += (ScoreManager.Instance.meleeAttackScore * ScoreManager.Instance.comboModifier);
+                ScoreManager.Instance.combatScore += (ScoreManager.Instance.meleeAttackScore * ScoreManager.Instance.comboModifier);
                 Debug.Log("Smacked an Enemy");
             }
             else
                 Debug.Log("Couldnt smack enemy");
-        }
+        //}
     }
 }
