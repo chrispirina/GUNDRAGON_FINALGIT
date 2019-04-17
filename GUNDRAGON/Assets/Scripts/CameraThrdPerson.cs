@@ -55,7 +55,7 @@ public class CameraThrdPerson : MonoBehaviour
     {
         if (amLocked == false)
         {
-            transform.LookAt(target);
+            transform.LookAt(targetPlayer);
 
             verticalRotate -= Input.GetAxis("Mouse Y") * rotateSensitivity;
             verticalRotate = Mathf.Clamp(verticalRotate, verticalMinMax.x, verticalMinMax.y);

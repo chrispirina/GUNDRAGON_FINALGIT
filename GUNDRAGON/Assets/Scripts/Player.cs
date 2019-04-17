@@ -76,6 +76,11 @@ public class Player : MonoBehaviour
             gunOut = 2F;
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger(Anim.ATTACK);
+        }
+
         animator.SetBool(Anim.GUN, gunOut > .0F);
     }
 
