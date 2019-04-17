@@ -257,7 +257,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 1
+  m_ExitTime: 0.95
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1085,7 +1085,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Spear_Attack
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101659121712749950}
@@ -1352,7 +1352,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sword_Attack_3
-  m_Speed: 1
+  m_Speed: 0.66
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101044565779855014}
@@ -1379,7 +1379,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sword_Attack_2
-  m_Speed: 1
+  m_Speed: 0.66
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101483445085687536}
@@ -1516,7 +1516,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sword_Attack_1
-  m_Speed: 1
+  m_Speed: 0.66
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101471505251864258}
@@ -1649,7 +1649,7 @@ AnimatorStateMachine:
     m_Position: {x: 168, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102876125405812388}
-    m_Position: {x: -24, y: 276, z: 0}
+    m_Position: {x: -252, y: 384, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102185614374253102}
     m_Position: {x: 396, y: 204, z: 0}
@@ -1658,7 +1658,7 @@ AnimatorStateMachine:
     m_Position: {x: 156, y: 216, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102066321142172312}
-    m_Position: {x: -264, y: 276, z: 0}
+    m_Position: {x: -252, y: 216, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102902944404492734}
     m_Position: {x: 156, y: 132, z: 0}
@@ -1670,9 +1670,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -12, y: 96, z: 0}
-  m_EntryPosition: {x: -12, y: 84, z: 0}
-  m_ExitPosition: {x: -216, y: 0, z: 0}
+  m_AnyStatePosition: {x: -24, y: 132, z: 0}
+  m_EntryPosition: {x: -24, y: 120, z: 0}
+  m_ExitPosition: {x: -228, y: 12, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102902944404492734}
 --- !u!1107 &1107740664648793944
