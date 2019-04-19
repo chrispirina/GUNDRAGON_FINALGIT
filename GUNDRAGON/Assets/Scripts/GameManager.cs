@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = requireCursor ? CursorLockMode.None : CursorLockMode.Locked;
 
-        playerHealthSlider.value = player.Health / Mathf.Max(player.maxHealth, .01F);
+        playerHealthSlider.value = player.Health;
 
         comboMeasure.value = ScoreManager.Instance.comboTimer;
 

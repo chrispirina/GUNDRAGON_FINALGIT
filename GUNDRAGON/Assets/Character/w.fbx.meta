@@ -379,6 +379,9 @@ ModelImporter:
       1/R_Clav_CTRL/R_Shoulder_CTRL_GRP/R_Shoulder_CTRL/R_Elbow_CTRL_GRP/R_Elbow_CTRL/R_Wrist_CTRL_GRP/R_Wrist_CTRL/pCube1
     - Hips_COG_CTRL_GRP/Hips_COG_CTRL/Chest_CTRL_GRP/Chest_CTRL/R_arm/R_Clav_CTRL_GRP
       1/R_Clav_CTRL/R_Shoulder_CTRL_GRP/R_Shoulder_CTRL/R_Elbow_CTRL_GRP/R_Elbow_CTRL/R_Wrist_CTRL_GRP/R_Wrist_CTRL/pCube2
+    - Root_BND
+    - Root_BND/spine1/spine2/spine3/spine4/chest_BND/L_Clav_BND/L_Shoulder_BND/L_Elbow_BND/L_Wrist_BND
+    - Root_BND/spine1/spine2/spine3/spine4/chest_BND/R_Clav_BND/R_Shoulder_BND/R_Elbow_BND/R_Wrist_BND
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
