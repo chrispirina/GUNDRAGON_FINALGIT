@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public GameObject spear;
     public GameObject sword;
     public bool gotSpear;
-    private bool weaponID = false;
+    private int weaponID = 0;
     [Readonly]
     public bool isDead;
 
@@ -45,20 +45,26 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         Health = maxHealth;
-        weaponID = false;
-        spear = GameObject.FindGameObjectWithTag("spear");
-        sword = GameObject.FindGameObjectWithTag("sword");
-        spear.SetActive(false);
-        sword.SetActive(false);
+        weaponID = 0;
+        //spear = GameObject.FindGameObjectWithTag("spear");
+        //sword = GameObject.FindGameObjectWithTag("sword");
+       // spear.SetActive(false);
+        //sword.SetActive(false);
     }
 
     private void Update()
     {
-        if (weaponID == false)
+        /*if (weaponID == 0)
         {
             sword.SetActive(true);
             spear.SetActive(false);
         }
+
+        else if (weaponID == 1)
+        {
+            sword.SetActive(false);
+            spear.SetActive(true);
+        }*/
 
         if (isDead)
         {
