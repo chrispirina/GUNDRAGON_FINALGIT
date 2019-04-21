@@ -255,31 +255,33 @@ public class B : MonoBehaviour
             Debug.DrawRay(gunPos.position, fwdGun * hit.distance, Color.green);
             if (hit.collider.CompareTag("Enemy"))
             {
-                if (hit.transform.gameObject.GetComponent<Enemy>())
+                EnemyHealth enemy = hit.transform.GetComponent<EnemyHealth>();
+                if (enemy) 
                 {
-                    hit.transform.gameObject.GetComponent<Enemy>().enemyAnim.SetTrigger("Enemy_Hit");                    
+                   enemy.wasHit = true;                    
                     if (elementType == ElementType.FIRE)
                     {
-                        hit.transform.gameObject.GetComponent<Enemy>().startBurn = true;
+                       enemy.startBurn = true;
                     }
                     else if (elementType == ElementType.NONE)
                     {
-                        hit.transform.gameObject.GetComponent<Enemy>().enemyHealth -= gunDamage;
+                       enemy.Health -= gunDamage;
                     }
-                    hit.transform.gameObject.GetComponent<Enemy>().wasHit = true;
+                   enemy.wasHit = true;
                 }
-                else if (hit.transform.gameObject.GetComponentInParent<Enemy>())
+                else if (hit.transform.GetComponentInParent<Enemy>())
                 {
-                    hit.transform.gameObject.GetComponentInParent<Enemy>().enemyAnim.SetTrigger("Enemy_Hit");
+                    enemy = hit.transform.GetComponentInParent<EnemyHealth>();
+                    enemy.wasHit = true;
                     if (elementType == ElementType.FIRE)
                     {
-                        hit.transform.gameObject.GetComponentInParent<Enemy>().startBurn = true;
+                        enemy.startBurn = true;
                     }
                     else if (elementType == ElementType.NONE)
                     {
-                        hit.transform.gameObject.GetComponentInParent<Enemy>().enemyHealth -= gunDamage;
+                        enemy.Health -= gunDamage;
                     }
-                    hit.transform.gameObject.GetComponentInParent<Enemy>().wasHit = true;
+                    enemy.wasHit = true;
                     
                 }
                 ScoreManager.Instance.combatScore += ScoreManager.Instance.gunAttackScore * ScoreManager.Instance.comboModifier;
