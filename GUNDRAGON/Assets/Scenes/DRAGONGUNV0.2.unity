@@ -2145,6 +2145,76 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 1574178105}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: playerHealthSlider
+      value: 
+      objectReference: {fileID: 2034322882}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: comboMeasure
+      value: 
+      objectReference: {fileID: 1200465628}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: pauseMenuPanel
+      value: 
+      objectReference: {fileID: 1134312438}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: startMenuPanel
+      value: 
+      objectReference: {fileID: 2052448092}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: endMenuPanel
+      value: 
+      objectReference: {fileID: 1697096551}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: youWin
+      value: 
+      objectReference: {fileID: 1817567932}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: youLose
+      value: 
+      objectReference: {fileID: 1817567932}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: finalScore
+      value: 
+      objectReference: {fileID: 1465695151}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: pointGained
+      value: 
+      objectReference: {fileID: 1794932657}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: levelTime
+      value: 
+      objectReference: {fileID: 625671219}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 848619543}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: scoreIndicator
+      value: 
+      objectReference: {fileID: 810870794}
+    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
+        type: 3}
+      propertyPath: combatScore
+      value: 
+      objectReference: {fileID: 77257867}
     - target: {fileID: 224983051247441990, guid: 3cc566300bd56ce4291cf37df70b51d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2640,76 +2710,6 @@ PrefabInstance:
       propertyPath: m_Value
       value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: uiManager
-      value: 
-      objectReference: {fileID: 1574178105}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: playerHealthSlider
-      value: 
-      objectReference: {fileID: 2034322882}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: comboMeasure
-      value: 
-      objectReference: {fileID: 1200465628}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: pauseMenuPanel
-      value: 
-      objectReference: {fileID: 1134312438}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: startMenuPanel
-      value: 
-      objectReference: {fileID: 2052448092}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: endMenuPanel
-      value: 
-      objectReference: {fileID: 1697096551}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: youWin
-      value: 
-      objectReference: {fileID: 1817567932}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: youLose
-      value: 
-      objectReference: {fileID: 1817567932}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: finalScore
-      value: 
-      objectReference: {fileID: 1465695151}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: pointGained
-      value: 
-      objectReference: {fileID: 1794932657}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: levelTime
-      value: 
-      objectReference: {fileID: 625671219}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 848619543}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: scoreIndicator
-      value: 
-      objectReference: {fileID: 810870794}
-    - target: {fileID: 114889113020699426, guid: 3cc566300bd56ce4291cf37df70b51d1,
-        type: 3}
-      propertyPath: combatScore
-      value: 
-      objectReference: {fileID: 77257867}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cc566300bd56ce4291cf37df70b51d1, type: 3}
 --- !u!114 &2034322882 stripped

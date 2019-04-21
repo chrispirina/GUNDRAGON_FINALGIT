@@ -34,8 +34,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
+        
     }
 
     // Use this for initialization
@@ -45,11 +44,8 @@ public class UIManager : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    {
-
-        
+    {       
         playerHealthSlider.value = player.Health;
-
         comboMeasure.value = ScoreManager.Instance.comboTimer;
         combatScore.text = (ScoreManager.Instance.combatScore.ToString() + " X " + ScoreManager.Instance.comboModifier.ToString());
         scoreIndicator.text = (ScoreManager.Instance.LevelScore.ToString());
