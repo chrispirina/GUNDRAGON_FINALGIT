@@ -13,23 +13,25 @@ public class PlayerMeleeDetection : MonoBehaviour
             Debug.Log("hit enemy");
             //if (Player.didSmack == true)
             //{
-                if(other.gameObject.GetComponent<Enemy>())
+            EnemyHealth enemy = other.GetComponent<EnemyHealth>();
+                if(enemy)
                 {
                     if (canSmack == true)
                     {
-                        other.gameObject.GetComponent<Enemy>().enemyAnim.SetTrigger("Enemy_Hit");
-                        other.gameObject.GetComponent<Enemy>().enemyHealth -= GameManager.Instance.playerMeleeDamage;
-                        other.gameObject.GetComponent<Enemy>().wasHit = true;
+                        enemy.wasHit = true;
+                        enemy.Health -= GameManager.Instance.playerMeleeDamage;
+                        enemy.wasHit = true;
                         canSmack = false;
                     }                    
                 }
                 else if (other.gameObject.GetComponentInParent<Enemy>())
                 {
+                enemy = other.GetComponentInParent<EnemyHealth>();
                     if (canSmack == true)
                     {
-                        other.gameObject.GetComponentInParent<Enemy>().enemyAnim.SetTrigger("Enemy_Hit");
-                        other.gameObject.GetComponentInParent<Enemy>().enemyHealth -= GameManager.Instance.playerMeleeDamage;
-                        other.gameObject.GetComponentInParent<Enemy>().wasHit = true;
+                       enemy.wasHit = true;
+                       enemy.Health -= GameManager.Instance.playerMeleeDamage;
+                       enemy.wasHit = true;
                         canSmack = false;
                     }                    
                 }

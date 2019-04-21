@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
             if (!hit.collider.CompareTag("Enemy"))
                 return;
 
-            Enemy enemy = hit.collider.attachedRigidbody.GetComponent<Enemy>();
+            EnemyHealth enemy = hit.collider.attachedRigidbody.GetComponent<EnemyHealth>();
 
             if (!enemy)
                 return;
@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
             switch(currentElement)
             {
                 case ElementType.NONE:
-                    enemy.enemyHealth -= gunDamage;
+                    enemy.Health -= gunDamage;
                     break;
                 case ElementType.FIRE:
                     enemy.startBurn = true;

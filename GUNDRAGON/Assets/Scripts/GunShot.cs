@@ -31,7 +31,7 @@ public class GunShot : MonoBehaviour
             
             if (hit.collider.CompareTag("Enemy"))
             {
-                gameObject.GetComponent<Enemy>().enemyHealth -= 1;
+                gameObject.GetComponent<EnemyHealth>().Health -= 1;
                 Debug.Log("Hit an Enemy");
                 ScoreManager.Instance.hitCount += 0.5f;
                 
