@@ -19,7 +19,10 @@ public class Player : MonoBehaviour
     public float maxHealth = 200F;
 
     [Header("State")]
+    public GameObject spear;
+    public GameObject sword;
     public bool gotSpear;
+    private bool weaponID = false;
     [Readonly]
     public bool isDead;
 
@@ -35,17 +38,28 @@ public class Player : MonoBehaviour
     public ParticleSystem gunChangeParticles;
 
     private float gunOut;
-
+    
     private Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         Health = maxHealth;
+        weaponID = false;
+        spear = GameObject.FindGameObjectWithTag("spear");
+        sword = GameObject.FindGameObjectWithTag("sword");
+        spear.SetActive(false);
+        sword.SetActive(false);
     }
 
     private void Update()
     {
+        if (weaponID == false)
+        {
+            sword.SetActive(true);
+            spear.SetActive(false);
+        }
+
         if (isDead)
         {
             GameManager.Instance.requireCursor = true;

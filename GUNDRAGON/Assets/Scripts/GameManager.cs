@@ -10,18 +10,18 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool didStart = false;
 
-    public Slider playerHealthSlider;
-    public Slider comboMeasure;
-    public GameObject pauseMenuPanel;
-    public GameObject startMenuPanel;
-    public GameObject endMenuPanel;
-    public GameObject youWin;
-    public GameObject youLose;
-    public TextMeshProUGUI scoreIndicator;
-    public TextMeshProUGUI finalScore;
-    public TextMeshProUGUI combatScore;
-    public TextMeshProUGUI levelTime;
-    public TextMeshProUGUI pointGained;
+    private Slider playerHealthSlider;
+    private Slider comboMeasure;
+    private GameObject pauseMenuPanel;
+    private GameObject startMenuPanel;
+    private GameObject endMenuPanel;
+    private GameObject youWin;
+    private GameObject youLose;
+    private TextMeshProUGUI scoreIndicator;
+    private TextMeshProUGUI finalScore;
+    private TextMeshProUGUI combatScore;
+    private TextMeshProUGUI levelTime;
+    private TextMeshProUGUI pointGained;
 
     public float playerMeleeDamage;
     public float playerGunDamage;
@@ -47,6 +47,18 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
+        playerHealthSlider = UIManager.Instance.playerHealthSlider;
+        comboMeasure = UIManager.Instance.comboMeasure;
+        pauseMenuPanel = UIManager.Instance.pauseMenuPanel;
+        startMenuPanel = UIManager.Instance.startMenuPanel;
+        endMenuPanel = UIManager.Instance.endMenuPanel;
+        youWin = UIManager.Instance.youWin;
+        youLose = UIManager.Instance.youLose;
+        scoreIndicator = UIManager.Instance.scoreIndicator;
+        finalScore = UIManager.Instance.finalScore;
+        combatScore = UIManager.Instance.combatScore;
+        levelTime = UIManager.Instance.levelTime;
+        pointGained = UIManager.Instance.pointGained;
         /*
         startMenuPanel = GameObject.FindGameObjectWithTag("StartMenu");
         pauseMenuPanel = GameObject.FindGameObjectWithTag("PauseMenu");
@@ -138,6 +150,9 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        youLose.SetActive(false);
+        startMenuPanel.SetActive(true);
+        endMenuPanel.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

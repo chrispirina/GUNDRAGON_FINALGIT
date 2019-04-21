@@ -22,6 +22,8 @@ TagManager:
   - LoseText
   - WinText
   - HealthBar
+  - spear
+  - sword
   layers:
   - Default
   - TransparentFX

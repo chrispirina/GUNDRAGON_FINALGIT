@@ -17,7 +17,7 @@ public class EnemyMeleeBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        SetInitialReferences();
     }
 
     // Update is called once per frame

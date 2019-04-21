@@ -20,8 +20,8 @@ public class CameraThrdPerson : MonoBehaviour
     Vector3 rotationSmoothVelocity;
     Vector3 currentRotation;
 
-    float verticalRotate;
-    float horizontalRotate;
+    public float verticalRotate;
+    public float horizontalRotate;
 
     void Start()
     {
@@ -46,6 +46,7 @@ public class CameraThrdPerson : MonoBehaviour
             target = targetPlayer;
         else
         {
+
             if (Input.GetKeyDown(KeyCode.Tab))
                 CycleTarget();
         }
@@ -79,6 +80,7 @@ public class CameraThrdPerson : MonoBehaviour
 
 
             transform.LookAt(target);
+            verticalRotate = 40.0f;
             transform.position = targetPlayer.position - transform.forward * dstFromTarget;
         }
     }
@@ -111,7 +113,7 @@ public class CameraThrdPerson : MonoBehaviour
         }
 
         amLocked = true;
-        if (target)
+        if (target && target != targetPlayer)
             targets.Enqueue(target);
         target = targets.Dequeue();
     }
