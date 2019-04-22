@@ -141,9 +141,9 @@ public class EnemyMaster : MonoBehaviour
         {
             c.enabled = false;
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         ScoreManager.Instance.combatScore += 100 * ScoreManager.Instance.comboModifier;
         Destroy(gameObject);
-        GameManager.Instance.enemiesRemaining -= 1;
+        //GameManager.Instance.enemiesRemaining -= 1;
     }
 }

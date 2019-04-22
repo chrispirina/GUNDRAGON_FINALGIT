@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public bool gotSpear;
     public Collider spearCollider;
     public Collider swordColider;
-    private int weaponID = 0;
+    public int weaponID = 0;
     [Readonly]
     public bool isDead;
 
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
             weaponID = 0;
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && gotSpear)
             weaponID = 1;
         animator.SetInteger(Anim.WEAPON_ID, weaponID);
         if (weaponID == 0)
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
             if (!hit.collider.CompareTag("Enemy"))
                 return;
 
-            EnemyHealth enemy = hit.collider.attachedRigidbody.GetComponent<EnemyHealth>();
+            EnemyHealth enemy = hit.collider.attachedRigidbody?.GetComponent<EnemyHealth>();
 
             if (!enemy)
                 return;

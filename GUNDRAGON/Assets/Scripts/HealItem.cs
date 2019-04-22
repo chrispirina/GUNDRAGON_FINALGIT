@@ -5,12 +5,13 @@ using UnityEngine;
 public class HealItem : MonoBehaviour
 {
     public float healAmount = 20.0f;
+    public float rotateSpeed;
 
 
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.Rotate(0, rotateSpeed * Time.deltaTime, 0, Space.Self);
     }
 
     void OnTriggerEnter(Collider other)

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class EnemyOrc : MonoBehaviour
 {
-    private float health = 50.0f;
-    private float damage = 20.0f;
-    private float speed = 8.0f;
+    private float health = 30.0f;
+    private float damage = 10.0f;
+    private float speed = 5.0f;
     private float retreatRange = 0.0f;
     private float chaseRange = 25.0f;
     private float attackRange = 2.0f;

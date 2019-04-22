@@ -181,7 +181,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ScoreManager.Instance.combatScore += 100 * ScoreManager.Instance.comboModifier;
         Destroy(gameObject);
-        GameManager.Instance.enemiesRemaining -= 1;
+        //GameManager.Instance.enemiesRemaining -= 1;
     }
 
     void EnemyMeleeAttack()

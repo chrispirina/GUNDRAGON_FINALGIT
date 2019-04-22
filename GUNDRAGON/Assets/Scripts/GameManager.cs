@@ -9,14 +9,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool didStart = false;
+    public bool didWin = false;
 
-   public Slider playerHealthSlider;
+    public Slider playerHealthSlider;
    public Slider comboMeasure;
    public GameObject pauseMenuPanel;
    public GameObject startMenuPanel;
    public GameObject endMenuPanel;
    public GameObject youWin;
    public GameObject youLose;
+   public GameObject fireOrb;
+   public GameObject nullOrb;
    public TextMeshProUGUI scoreIndicator;
    public TextMeshProUGUI finalScore;
    public TextMeshProUGUI combatScore;
@@ -26,8 +29,6 @@ public class GameManager : MonoBehaviour
     public float playerMeleeDamage;
     public float playerGunDamage;
     public float upgradePoints;
-
-    public int enemiesRemaining = 5;
 
     public Player player;
     public bool requireCursor = false;
@@ -45,9 +46,12 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        ScoreManager.Instance.highestComboMod = 1.0f;
+        ScoreManager.Instance.LevelScore = 0.0f;
+        ScoreManager.Instance.combatScore = 0.0f;
+        ScoreManager.Instance.FinalScore = 0.0f;
         Instance = this;
-
-        playerMeleeDamage = 5.0f;
+        didWin = false;
 
         /*
         startMenuPanel = GameObject.FindGameObjectWithTag("StartMenu");
@@ -80,7 +84,23 @@ public class GameManager : MonoBehaviour
 
         comboMeasure.value = ScoreManager.Instance.comboTimer;
 
-        if (enemiesRemaining <= 0)
+        if (player.weaponID == 0)
+            playerMeleeDamage = 8.0f;
+        else if (player.weaponID == 1)
+            playerMeleeDamage = 4.0f;
+
+        if (player.currentElement == Player.ElementType.NONE)
+        {
+            fireOrb.SetActive(false);
+            nullOrb.SetActive(true);
+        }
+        else if (player.currentElement == Player.ElementType.FIRE)
+        {
+            fireOrb.SetActive(true);
+            nullOrb.SetActive(false);
+        }
+
+        if (didWin)
             PlayerWon();
 
         if (player.isDead)

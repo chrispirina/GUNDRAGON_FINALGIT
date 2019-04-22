@@ -31,7 +31,7 @@ public class CameraThrdPerson : MonoBehaviour
     void Update()
     {
 
-        if (targets.Count == 0)
+        if (targets.Count <= 0 && (!target || target == targetPlayer))
             amLocked = false;
 
         if (Input.GetMouseButtonDown(2))
@@ -39,7 +39,11 @@ public class CameraThrdPerson : MonoBehaviour
             if (!amLocked)
                 CycleTarget();
             else
+            {
                 amLocked = false;
+                if (target && target != targetPlayer)
+                    targets.Enqueue(target);
+            }
         }
 
         if (!amLocked)
@@ -70,18 +74,11 @@ public class CameraThrdPerson : MonoBehaviour
 
         else if (amLocked == true)
         {
-            /*
-            verticalRotate -= Input.GetAxis("Mouse Y") * rotateSensitivity;
-            verticalRotate = Mathf.Clamp(verticalRotate, verticalMinMax.x, verticalMinMax.y);
-            horizontalRotate += Input.GetAxis("Mouse X") * rotateSensitivity;
-            */
             currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(verticalRotate, horizontalRotate), ref rotationSmoothVelocity, rotationSmoothTime);
             transform.eulerAngles = currentRotation;
-
-
             transform.LookAt(target);
             verticalRotate = 40.0f;
-            transform.position = targetPlayer.position - transform.forward * dstFromTarget;
+            transform.position = targetPlayer.position - transform.forward * dstFromTarget + Vector3.up*1;
         }
     }
 
@@ -107,7 +104,7 @@ public class CameraThrdPerson : MonoBehaviour
 
     private void CycleTarget()
     {
-        if(targets.Count <= 0)
+        if(targets.Count <= 0 && (!target || target == targetPlayer))
         {
             amLocked = false;
             return;

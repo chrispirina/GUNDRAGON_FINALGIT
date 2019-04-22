@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyRangeBehaviour : MonoBehaviour
 {
-    private float health = 25.0f;
-    private float damage = 10.0f;
-    private float speed = 4.0f;
+    private float health = 20.0f;
+    private float damage = 5.0f;
+    private float speed = 3.0f;
     private float retreatRange = 5.0f;
     private float chaseRange = 30.0f;
     private float attackRange = 20.0f;
     private float attackCooldown = 0.0f;
-    private float attackCooldownMax = 3.0f;
+    private float attackCooldownMax = 1.0f;
     public CharacterController enemyMover;
     private EnemyMaster enemyMaster;
     private Animator animator;

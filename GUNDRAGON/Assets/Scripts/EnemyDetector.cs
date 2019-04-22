@@ -31,12 +31,12 @@ public class EnemyDetector : MonoBehaviour
         for (int i = 0; i < destroyObjects.Length; i++)
         {
             if (particlesTemplate)
-                particles[i] = Instantiate(particlesTemplate, destroyObjects[i].transform);
+                particles[i] = Instantiate(particlesTemplate, destroyObjects[i].transform.position, destroyObjects[i].transform.rotation);
 
             Destroy(destroyObjects[i]);
         }
 
-        float time = 0F;
+        float time = 2F;
 
         while (time >= 0F)
         {
