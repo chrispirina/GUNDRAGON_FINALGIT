@@ -32577,6 +32577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652851178825592600}
+  - component: {fileID: 7908740551039476890}
   m_Layer: 0
   m_Name: tallbuilding
   m_TagString: Untagged
@@ -32959,6 +32960,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7908740551039476890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9180529077740100231}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.374207, y: 21.780329, z: 14.865982}
+  m_Center: {x: 7.1871033, y: 10.390164, z: -6.932991}
 --- !u!1 &9205981539686907522
 GameObject:
   m_ObjectHideFlags: 0
