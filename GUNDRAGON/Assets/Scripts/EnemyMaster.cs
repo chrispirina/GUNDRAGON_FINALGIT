@@ -5,23 +5,30 @@ using UnityEngine.AI;
 
 public class EnemyMaster : MonoBehaviour
 {
+    [System.NonSerialized]
     public float enemyHealth;
+    [System.NonSerialized]
     public float enemyDamage;
+    [System.NonSerialized]
     public float enemySpeed;
+    [System.NonSerialized]
     public float enemyRetreatRange;
+    [System.NonSerialized]
     public float enemyChaseRange;
+    [System.NonSerialized]
     public float enemyAttackRange;
 
     private Transform enemyTransform;
     private Collider[] hitColliders;
-    private float checkRate;
-    private float nextCheck;
-    public float distanceToPlayer;
 
-    public NavMeshAgent agent;
+    private float nextCheck;
+    public  float distanceToPlayer;
+
+    private float yVelocity;
+
+    public CharacterController controller;
     public GameObject player;
     public LayerMask playerDetectionLayer;
-    private float detectionRadius = 100.0f;
 
     public bool isAttacking = false;
     public bool isRetreating = false;
@@ -30,23 +37,34 @@ public class EnemyMaster : MonoBehaviour
 
     public bool isAlive = true;
 
-    void Start()
+    void Awake()
     {
         SetInitialReferences();
     }    
 
     void Update()
     {
-        if (enemyHealth <= 0)
+        Vector3 heading = player.transform.position - transform.position;
+        heading.y = 0F;
+        float distanceToPlayer = heading.magnitude;
+        Vector3 direction = heading / distanceToPlayer;
+
+        yVelocity += 9.81F * Time.deltaTime;
+
+        float speedMultiplier = 1f;
+
+        if (isAlive == false)
         {
-            isAlive = false;
+            direction *= 0.0f;
             StartCoroutine(EnemyDeath());
         }
 
         else if (isAlive == true)
         {
-            distanceToPlayer = Vector3.Distance(player.transform.position, enemyTransform.position);
-            CheckPlayerInRange();
+            
+            //distanceToPlayer = Vector3.Distance(player.transform.position, enemyTransform.position);
+
+           // CheckPlayerInRange();
 
             if (distanceToPlayer < enemyRetreatRange)
             {
@@ -54,7 +72,8 @@ public class EnemyMaster : MonoBehaviour
                 isAttacking = false;
                 isRetreating = true;
                 isChasing = false;
-                isIdle = false;
+                isIdle = false;                
+
             }
 
             else if (distanceToPlayer >= enemyRetreatRange && distanceToPlayer < enemyAttackRange)
@@ -64,6 +83,7 @@ public class EnemyMaster : MonoBehaviour
                 isRetreating = false;
                 isChasing = false;
                 isIdle = false;
+                speedMultiplier = 0;
             }
 
             else if (distanceToPlayer >= enemyAttackRange && distanceToPlayer <= enemyChaseRange)
@@ -82,41 +102,41 @@ public class EnemyMaster : MonoBehaviour
                 isRetreating = false;
                 isChasing = false;
                 isIdle = true;
+                speedMultiplier = 0;
             }
+            if (isRetreating)
+            {
+                direction *= -1;
+            }
+
+            transform.forward = direction;
+            controller.Move((direction * speedMultiplier * enemySpeed + Vector3.down * yVelocity) * Time.deltaTime);
+
+            if (controller.isGrounded)
+                yVelocity = 0F;
         }
-        
+
+       
+
     }
 
     void SetInitialReferences()
     {
         enemyTransform = transform;
         player = GameObject.FindGameObjectWithTag("Player");
-        checkRate = Random.Range(0.8f, 1.5f);
-        agent = GetComponent<NavMeshAgent>();
-        agent.enabled = false;        
+        controller = GetComponent<CharacterController>();        
         distanceToPlayer = Vector3.Distance(player.transform.position, enemyTransform.position);
         isAlive = true;
     }
 
-    void CheckPlayerInRange()
+    private void OnDrawGizmosSelected()
     {
-        if (Time.time > nextCheck)
-        {
-            nextCheck = Time.time + checkRate;
-
-            hitColliders = Physics.OverlapSphere(enemyTransform.position, detectionRadius, playerDetectionLayer);
-            if (hitColliders.Length > 0)
-            {
-                agent.autoBraking = false;
-                agent.enabled = true;
-            }
-        }
-        
+        Gizmos.DrawWireSphere(transform.position, enemyChaseRange);
+        Gizmos.DrawWireSphere(transform.position, enemyAttackRange);
     }
 
     public IEnumerator EnemyDeath()
     {
-        agent.enabled = false;
         foreach (Collider c in GetComponentsInChildren<Collider>())
         {
             c.enabled = false;

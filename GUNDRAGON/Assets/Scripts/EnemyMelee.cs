@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class EnemyMelee : MonoBehaviour
 {
-    Enemy thisEnemy;
+    EnemyMaster thisEnemy;
 
     void Start()
     {
-        thisEnemy = GetComponentInParent<Enemy>();
+        thisEnemy = GetComponentInParent<EnemyMaster>();
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("hit player");
-            if (thisEnemy.amAttacking)
+            if (thisEnemy.isAttacking)
             {
                 Player player = other.GetComponent<Player>();
 
-                player.Health -= thisEnemy.Damage;                
+                player.Health -= thisEnemy.enemyDamage;                
                 Debug.Log("Smacked player");
-                thisEnemy.amAttacking = false;
             }
             else
                 Debug.Log("Couldnt smack player");

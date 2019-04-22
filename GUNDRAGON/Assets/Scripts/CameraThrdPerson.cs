@@ -94,13 +94,14 @@ public class CameraThrdPerson : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && other.attachedRigidbody != null)
             targets.Enqueue(other.attachedRigidbody.transform);
+
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && other.attachedRigidbody != null)
             targets = new Queue<Transform>(targets.Where(x => x != other.attachedRigidbody.transform));
     }
 

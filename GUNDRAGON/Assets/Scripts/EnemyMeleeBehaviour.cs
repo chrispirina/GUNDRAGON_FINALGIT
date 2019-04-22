@@ -11,7 +11,7 @@ public class EnemyMeleeBehaviour : MonoBehaviour
     private float retreatRange = 10.0f;
     private float chaseRange = 25.0f;
     private float attackRange = 20.0f;
-    public NavMeshAgent enemyAgent;
+    public CharacterController controller;
     private EnemyMaster enemyMaster;
 
     // Use this for initialization
@@ -35,6 +35,6 @@ public class EnemyMeleeBehaviour : MonoBehaviour
         enemyMaster.enemyRetreatRange = retreatRange;
         enemyMaster.enemyChaseRange = chaseRange;
         enemyMaster.enemyAttackRange = attackRange;
-        enemyAgent = enemyMaster.agent;
+        controller = enemyMaster.controller;
     }
 }

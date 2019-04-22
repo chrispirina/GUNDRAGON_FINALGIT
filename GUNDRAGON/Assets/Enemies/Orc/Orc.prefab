@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1223694644051841804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_hand_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266845705549709143}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_toe_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 494082694077584284}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_hip_bnd_End_CLS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6684209303075111251}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7166282490736945614}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:head_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1744799016466030177}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_elbow_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 641552722221648934}
-  m_Layer: 0
+  - component: {fileID: 7380963395124762369}
+  - component: {fileID: 994202681273396676}
+  m_Layer: 10
   m_Name: Orcsmoll:R_wrist_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,6 +215,31 @@ Transform:
   m_Father: {fileID: 1744799016466030177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7380963395124762369
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514431734432672788}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7761059, y: 0.9999998, z: 1.5105268}
+  m_Center: {x: -0.88805306, y: -0.0000013820583, z: 0.1672734}
+--- !u!114 &994202681273396676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514431734432672788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e648b5c129ecc40961a73ea0dc4a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2620739072995171248
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5652922878180104723}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_shoulder_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6620668176235405815}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_knee_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994520816942774335}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:spineBase_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 751296757729877064}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:crown_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 554777499961424612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_ball_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2139068881466198255}
   - component: {fileID: 3451573808889620048}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:Orc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4990937138098416705}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_ball_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5364379757796191452}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_toe_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6691995683813127965}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_knee_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 765517084647388172}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_hip_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +632,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201461872240476931}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_wrist_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1369556316205813545}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:neck_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,7 +694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9171866834565735033}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_hand_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653810727981908104}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_shoulder_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8023017562881209383}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_hip_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6957829897392687506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_ankle_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,9 +819,12 @@ GameObject:
   - component: {fileID: 1133839263028709445}
   - component: {fileID: 5043186943819945093}
   - component: {fileID: 1496078929809822144}
-  m_Layer: 0
+  - component: {fileID: 890379960}
+  - component: {fileID: 890379959}
+  - component: {fileID: 890379958}
+  m_Layer: 10
   m_Name: Orc
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -826,14 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de7728ab668db549aacfe7fbac9a526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 200
-  isDead: 0
-  startBurn: 0
-  wasHit: 0
-  range: 20
-  atkRange: 2
-  orcSpeed: 5
+  enemyMover: {fileID: 0}
 --- !u!143 &1496078929809822144
 CharacterController:
   m_ObjectHideFlags: 0
@@ -848,10 +871,60 @@ CharacterController:
   m_Height: 2.4807692
   m_Radius: 0.53592384
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.03
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: -0.067145854, y: 1.0428971, z: 0.4305234}
+--- !u!54 &890379960
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620762591786574020}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &890379959
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620762591786574020}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5359238
+  m_Height: 2.480769
+  m_Direction: 1
+  m_Center: {x: -0.06714585, y: 1.042897, z: 0.4305234}
+--- !u!114 &890379958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620762591786574020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ffb339eab305a499228b5e9b744afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBurning: 0
+  startBurn: 0
+  burnTime: 0
+  maxBurnTime: 5
+  health: 0
+  maxHealth: 25
+  isDead: 0
+  wasHit: 0
 --- !u!1 &6638742870904306712
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 462477843152018154}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_ankle_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +965,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6085916154226598758}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:R_clav_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +996,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1573368830135547191}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_hip_bnd_End_CLS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +1026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4657745652431415714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_elbow_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +1057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862144253047233533}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:L_clav_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1088,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1858029377176613968}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:Root_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1049,7 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4192671345167893964}
   - component: {fileID: 788195744743517673}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1100,7 +1173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8444429719160742287}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:spineEnd_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1131,7 +1204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 271530621259050439}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orcsmoll:chest_bnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}

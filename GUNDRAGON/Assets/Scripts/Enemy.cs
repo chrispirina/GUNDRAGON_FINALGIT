@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
                                                                                 //Line 70 melee enemy movement, have enemies notice player, move away from player briefly between attacks.
                                                                                 //don't let enemies occ. same space
 
-    public float enemyHealth = 25.0f;
+    public float enemyHealth;
 
     public bool wasHit = false;
     public float attackTimer;

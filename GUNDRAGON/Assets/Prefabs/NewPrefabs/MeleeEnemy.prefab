@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 33494486936162162}
   - component: {fileID: 23202324358084970}
   - component: {fileID: 136439464389796698}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: testEnemy_Core
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4641313896242986}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shot_emitter
   m_TagString: EnemyGunEmitter
   m_Icon: {fileID: 0}
@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 23176726972204606}
   - component: {fileID: 65217481480432688}
   - component: {fileID: 114892827815111508}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: L_fist
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 195265643245162330}
   - component: {fileID: 136280406976223222}
   - component: {fileID: 95912862662244840}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -379,9 +379,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021883194739114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: L_Shoulder
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,9 +413,9 @@ GameObject:
   - component: {fileID: 33637434446277984}
   - component: {fileID: 23250337905189150}
   - component: {fileID: 65942845689433158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: R_fist
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -502,9 +502,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4284380901963718}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: R_Shoulder
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

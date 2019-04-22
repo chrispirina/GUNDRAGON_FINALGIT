@@ -4,44 +4,35 @@ using UnityEngine;
 
 public class PlayerMeleeDetection : MonoBehaviour
 {
-    public static bool canSmack = true;
+    private Collider hitCollider;
+
+    private void Awake()
+    {
+        hitCollider = GetComponent<Collider>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("hit enemy");
-            //if (Player.didSmack == true)
-            //{
+
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
-                if(enemy)
-                {
-                    if (canSmack == true)
-                    {
-                        enemy.wasHit = true;
-                        enemy.Health -= GameManager.Instance.playerMeleeDamage;
-                        enemy.wasHit = true;
-                        canSmack = false;
-                    }                    
-                }
-                else if (other.gameObject.GetComponentInParent<Enemy>())
-                {
+            if (!enemy)
                 enemy = other.GetComponentInParent<EnemyHealth>();
-                    if (canSmack == true)
-                    {
-                       enemy.wasHit = true;
-                       enemy.Health -= GameManager.Instance.playerMeleeDamage;
-                       enemy.wasHit = true;
-                        canSmack = false;
-                    }                    
-                }
-                
-                ScoreManager.Instance.hitCount += 1;
-                ScoreManager.Instance.combatScore += (ScoreManager.Instance.meleeAttackScore * ScoreManager.Instance.comboModifier);
-                Debug.Log("Smacked an Enemy");
+            if (enemy)
+            {
+
+                enemy.Health -= GameManager.Instance.playerMeleeDamage;
+                hitCollider.enabled = false;
+                other.GetComponentInChildren<Animator>().SetTrigger(Anim.DAMAGED);
+
             }
-            else
-                Debug.Log("Couldnt smack enemy");
-        //}
+
+            ScoreManager.Instance.hitCount += 1;
+            ScoreManager.Instance.combatScore += (ScoreManager.Instance.meleeAttackScore * ScoreManager.Instance.comboModifier);
+        }
+        else
+            Debug.Log("Couldnt smack enemy");
+
     }
 }

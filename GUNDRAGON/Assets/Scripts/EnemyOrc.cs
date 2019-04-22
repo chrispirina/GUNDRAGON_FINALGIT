@@ -1,23 +1,33 @@
 ﻿using UnityEngine.AI;
 using UnityEngine;
 
-public class EnemyOrc : EnemyHealth
+public class EnemyOrc : MonoBehaviour
 {
-    private Player player;
-    public float range = 20f;
-    public float atkRange = 0.5f;
-    private CharacterController controller;
-    public float orcSpeed = 5f;
-
+    private float health = 50.0f;
+    private float damage = 20.0f;
+    private float speed = 8.0f;
+    private float retreatRange = 0.0f;
+    private float chaseRange = 25.0f;
+    private float attackRange = 2.0f;
+    private float attackCooldown = 0.0f;
+    private float attackCooldownMax = 1.0f;
+    public CharacterController enemyMover;
+    private EnemyMaster enemyMaster;
     private Animator animator;
-    private float yVelocity;
+
 
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        controller = GetComponent<CharacterController>();
+        enemyMaster = GetComponent<EnemyMaster>();
         animator = GetComponentInChildren<Animator>();
+        enemyMaster.enemyHealth = health;
+        enemyMaster.enemyDamage = damage;
+        enemyMaster.enemySpeed = speed;
+        enemyMaster.enemyRetreatRange = retreatRange;
+        enemyMaster.enemyChaseRange = chaseRange;
+        enemyMaster.enemyAttackRange = attackRange;
+        enemyMover = enemyMaster.controller;
     }
     // Start is called before the first frame update
     void Start()
@@ -28,43 +38,34 @@ public class EnemyOrc : EnemyHealth
     // Update is called once per frame
     void Update()
     {
-        Vector3 heading = player.transform.position - transform.position;
-        heading.y = 0F;
-        float distance = heading.magnitude;
-        Vector3 direction = heading / distance;
-
-        yVelocity += 9.81F * Time.deltaTime;
-
-        if (distance <= atkRange)
+        if (attackCooldown >= 0.0f)
+        {
+            attackCooldown -= Time.deltaTime;
+        }
+        
+        if (enemyMaster.isAttacking)
         {
             animator.SetBool("isMoving", false);
 
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-            if (stateInfo.IsName("Combat Idle"))
+            if (stateInfo.IsName("Combat Idle") && attackCooldown <= 0.0f)
+            {
                 animator.SetTrigger(Random.Range(0, 100) > 75 ? "MultiAttack" : "Attack");
+                attackCooldown = attackCooldownMax;
+            }
 
-            direction *= 0F;
         }
-        else if (distance > range)
+        else if (enemyMaster.isIdle)
         {
             animator.SetBool("isMoving", false);
-            direction *= 0F;
+
         }
         else
         {
             animator.SetBool("isMoving", true);
         }
 
-        controller.Move((direction * orcSpeed + Vector3.down * yVelocity) * Time.deltaTime);
-
-        if (controller.isGrounded)
-            yVelocity = 0F;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, range);
-        Gizmos.DrawWireSphere(transform.position, atkRange);
-    }
 }

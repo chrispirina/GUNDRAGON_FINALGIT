@@ -188,7 +188,7 @@ public class B : MonoBehaviour
                     {
                         playerAnimator.ResetTrigger("Attack");
                         didSmack = false;
-                        PlayerMeleeDetection.canSmack = true;
+
                         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Hit1toHit2") == true)
                         {
                             playerAnimator.SetTrigger("HitToIdle");

@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     public float Health
     {
         get => health;
-        set {
+        set
+        {
             health = Mathf.Clamp(value, 0F, maxHealth);
             UpdateHealth();
         }
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour
     public GameObject spear;
     public GameObject sword;
     public bool gotSpear;
+    public Collider spearCollider;
+    public Collider swordColider;
     private int weaponID = 0;
     [Readonly]
     public bool isDead;
@@ -31,14 +34,14 @@ public class Player : MonoBehaviour
     public Transform meleeAnchor;
 
     [Header("Properties")]
-    public float gunDamage = 5F;
+    public float gunDamage = 5.0f;
 
     [Header("Particles")]
     public ParticleSystem[] elementalParticles = { };
     public ParticleSystem gunChangeParticles;
 
     private float gunOut;
-    
+
     private Animator animator;
 
     private void Awake()
@@ -46,25 +49,27 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         Health = maxHealth;
         weaponID = 0;
-        //spear = GameObject.FindGameObjectWithTag("spear");
-        //sword = GameObject.FindGameObjectWithTag("sword");
-       // spear.SetActive(false);
-        //sword.SetActive(false);
     }
 
     private void Update()
     {
-        /*if (weaponID == 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            weaponID = 0;
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            weaponID = 1;
+        animator.SetInteger(Anim.WEAPON_ID, weaponID);
+        if (weaponID == 0)
         {
             sword.SetActive(true);
             spear.SetActive(false);
+            
         }
 
         else if (weaponID == 1)
         {
             sword.SetActive(false);
             spear.SetActive(true);
-        }*/
+        }
 
         if (isDead)
         {
@@ -83,15 +88,16 @@ public class Player : MonoBehaviour
         if (GameManager.Instance.IsPaused)
             return;
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
             CycleElement(1);
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
             CycleElement(-1);
 
         if (gunOut > .0F)
             gunOut -= Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(1)) {
+        if (Input.GetMouseButtonDown(1))
+        {
             animator.SetTrigger(Anim.SHOOT);
             gunOut = 2F;
         }
@@ -99,6 +105,11 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger(Anim.ATTACK);
+            if (weaponID == 0)
+                swordColider.enabled = true;
+            else if (weaponID == 1)
+                spearCollider.enabled = true;
+            
         }
 
         animator.SetBool(Anim.GUN, gunOut > .0F);
@@ -134,8 +145,8 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         gunOut = 1F;
-
-        if(Physics.Raycast(gunAnchor.position, gunAnchor.forward, out RaycastHit hit))
+        Physics.queriesHitTriggers = false;
+        if (Physics.Raycast(gunAnchor.position, gunAnchor.forward, out RaycastHit hit))
         {
             if (elementalParticles[(int)currentElement])
                 elementalParticles[(int)currentElement].Play();
@@ -149,7 +160,9 @@ public class Player : MonoBehaviour
             if (!enemy)
                 return;
 
-            switch(currentElement)
+            enemy.GetComponentInChildren<Animator>().SetTrigger(Anim.DAMAGED);
+
+            switch (currentElement)
             {
                 case ElementType.NONE:
                     enemy.Health -= gunDamage;

@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
 
+        playerMeleeDamage = 5.0f;
+
         /*
         startMenuPanel = GameObject.FindGameObjectWithTag("StartMenu");
         pauseMenuPanel = GameObject.FindGameObjectWithTag("PauseMenu");

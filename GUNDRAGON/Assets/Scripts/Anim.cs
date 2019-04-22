@@ -10,4 +10,5 @@ public static class Anim
     public static readonly int ATTACK = Animator.StringToHash("Attack");
     public static readonly int SHOOT = Animator.StringToHash("Shoot");
     public static readonly int GUN = Animator.StringToHash("Gun");
+    public static readonly int DAMAGED = Animator.StringToHash("Damaged");
 }
